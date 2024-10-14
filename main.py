@@ -1,22 +1,13 @@
-from flask import Flask, render_template, url_for
-from flask_bootstrap import Bootstrap5
 
-app = Flask(__name__)
+import os
+from app import create_app, db
+from app.models import User, Role, Event, Visibility, Group
 
-bootstrap = Bootstrap5(app)
+app = create_app()
 
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/test')
-def test():
-    return render_template('test.html')
-
-@app.route('/user/<name>')
-def user_page(name):
-    return render_template('user.html', name=name)
+@app.shell_context_processor
+def make_shell_context():
+    return dict(db=db, User=User, Role=Role, Event=Event, Visibility=Visibility, Group=Group)
 
 
 if __name__ == '__main__':
