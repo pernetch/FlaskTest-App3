@@ -19,5 +19,5 @@ def user_page(name):
     return render_template('user.html', name=name)
 
 
-#if __name__ == '__main__':
-#    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
