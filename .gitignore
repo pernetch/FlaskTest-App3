@@ -17,3 +17,4 @@ config.py
 .venv
 data.sqlite
 secret.py
+app.db
