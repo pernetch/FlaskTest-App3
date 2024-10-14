@@ -26,22 +26,7 @@ class User (db.Model):
         return '<User %r>' % self.name
     
 
-class Event (db.Model):
-    __tablename__ = 'events'
-    id = db.Column(db.Integer, primary_key=True)
-    date_start = db.Column(db.Date)
-    date_end = db.Column(db.Date)
-    time_start = db.Column(db.Time)
-    time_end = db.Column(db.Time)
-    description = db.Column(db.String(256))
-    lieu = db.Column(db.String(50))
-    vignette = db.Column(db.String(100))
-    visibility_id = db.Column(db.Integer, db.ForeignKey('visibilities.id'))
-    groupe_id = db.Column(db.Integer, db.ForeignKey('groupes.id'))
-    
-    def __repr__(self):
-        return '<Event %r>' % self.description
-    
+  
 
 class Visibility (db.Model):
     __tablename__ = 'visibilities'
@@ -60,3 +45,19 @@ class Group (db.Model):
 
     def __repr__(self):
         return '<Role %r>' % self.name
+    
+class Event (db.Model):
+    __tablename__ = 'events'
+    id = db.Column(db.Integer, primary_key=True)
+    date_start = db.Column(db.Date)
+    date_end = db.Column(db.Date)
+    time_start = db.Column(db.Time)
+    time_end = db.Column(db.Time)
+    description = db.Column(db.String(256))
+    lieu = db.Column(db.String(50))
+    vignette_name = db.Column(db.String(100))
+    visibility_id = db.Column(db.Integer, db.ForeignKey('visibilities.id'))
+    groupe_id = db.Column(db.Integer, db.ForeignKey('groupes.id'))
+    
+    def __repr__(self):
+        return '<Event %r>' % self.description
