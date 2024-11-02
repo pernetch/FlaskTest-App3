@@ -1,4 +1,10 @@
 {% extends "base.html" %} 
+{% from 'bootstrap4/table.html' import render_table %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.23.5/dist/bootstrap-table.min.css">
+{% endblock %}
 
 
 {% block content %}
@@ -6,7 +12,8 @@
     
     <h1>Liste des événements</h1>
 
-    <table class="table table-dark table-striped">
+    <table id="data" class="table table-dark table-striped" data-filter-control="true"
+    data-show-search-clear-button="true">
         <thead>
             <tr>
               <th scope="col">ID</th>
@@ -28,7 +35,27 @@
     {%- endfor %}
 </table> 
 
+<br>
+
+{{render_table(events, show_actions=True, actions_title='Actions', model=None, custom_actions=None)}}
+
 </div>
 
+
+{% endblock %}
+
+{% block scripts %}
+<!-- Optional JavaScript -->
+{{super()}}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.23.5/dist/bootstrap-table.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.23.5/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+    <script>
+
+        $(function() {
+            $('#data').bootstrapTable()
+          })
+
+    </script>
 
 {% endblock %}
