@@ -1,13 +1,11 @@
 
 from flask import Flask, render_template, url_for, session, redirect, flash
 from flask_bootstrap import Bootstrap5
-#from flask_sqlalchemy import SQLAlchemy
 
 from config import Config
 from app.models import *
 
 bootstrap = Bootstrap5()
-#db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
