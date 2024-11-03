@@ -4,7 +4,7 @@ from flask_bootstrap import Bootstrap5
 
 from config import Config
 from app.models import *
-from app.forms import loginForm
+from app.forms import loginForm, addEventForm
 
 bootstrap = Bootstrap5()
 
@@ -22,7 +22,7 @@ def create_app():
         return render_template('index.html')
 
     @app.route('/login', methods=['GET', 'POST'])
-    def test():
+    def login():
         form = loginForm()
         return render_template('login.html', form = form)
     
@@ -31,6 +31,12 @@ def create_app():
         events = Event.query.all()
 
         return render_template('events.html', events=events)
+    
+    @app.route('/add-event')
+    def add_event():
+        form = addEventForm()
+
+        return render_template('add-event.html', form=form)
 
     @app.route('/user/<name>')
     def user_page(name):
